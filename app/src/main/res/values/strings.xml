@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TestPerm</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_dream_text_key">pref_dream_text</string>
+    <string name="pref_dream_text_default">zzzZZZzzz</string>
+    <string name="fab_notice">Replace with your own action</string>
+    <string name="click_me">click me</string>
+    <string name="hw">HHHWWW!</string>
+    <string name="btn_hint">hahaha</string>
+    <string name="dummy">dummy</string>
+</resources>
