@@ -1,7 +1,6 @@
 package hxchen.sg.edu.ntu.testperm;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,9 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(getBaseContext(), perm) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, perm)) {
                 Log.d(TAG, "SHOULD show");
-                Snackbar.make(view, "you should", Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+                Snackbar.make(hahaView, "you should", Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -73,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        Log.d(TAG, "onResume");
         super.onResume();
         for (String db : databaseList()) {
             Log.d(TAG, "db: " + getDatabasePath(db));
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         hahaView = findViewById(R.id.hahaha);
@@ -103,11 +104,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         requestPerm(hahaView);
+        dumpUserDict();
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG, "onCreateOptionsMenu");
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -115,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected");
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -122,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            dumpDeviceId(hahaView);
             return true;
         }
 
