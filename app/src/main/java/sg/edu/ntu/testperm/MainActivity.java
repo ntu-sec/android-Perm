@@ -1,4 +1,4 @@
-package hxchen.sg.edu.ntu.testperm;
+package sg.edu.ntu.testperm;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

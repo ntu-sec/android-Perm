@@ -7,7 +7,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "hxchen.sg.edu.ntu.testperm"
+        applicationId "sg.edu.ntu.testperm"
         minSdkVersion 23
         targetSdkVersion 23
         versionCode 1

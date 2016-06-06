@@ -1,4 +1,4 @@
-package hxchen.sg.edu.ntu.testperm;
+package sg.edu.ntu.testperm;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -14,12 +14,12 @@ import android.content.Context;
 public class MyIntentService extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "hxchen.sg.edu.ntu.testperm.action.FOO";
-    private static final String ACTION_BAZ = "hxchen.sg.edu.ntu.testperm.action.BAZ";
+    private static final String ACTION_FOO = "sg.edu.ntu.testperm.action.FOO";
+    private static final String ACTION_BAZ = "sg.edu.ntu.testperm.action.BAZ";
 
     // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "hxchen.sg.edu.ntu.testperm.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "hxchen.sg.edu.ntu.testperm.extra.PARAM2";
+    private static final String EXTRA_PARAM1 = "sg.edu.ntu.testperm.extra.PARAM1";
+    private static final String EXTRA_PARAM2 = "sg.edu.ntu.testperm.extra.PARAM2";
 
     public MyIntentService() {
         super("MyIntentService");

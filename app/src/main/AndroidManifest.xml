@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hxchen.sg.edu.ntu.testperm">
+    package="sg.edu.ntu.testperm">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -39,7 +39,7 @@
 
         <provider
             android:name=".MyContentProvider"
-            android:authorities="hxchen.sg.edu.ntu"
+            android:authorities="sg.edu.ntu"
             android:enabled="true"
             android:exported="true" />
         <!-- This service is only used on devices with API v17+ -->
