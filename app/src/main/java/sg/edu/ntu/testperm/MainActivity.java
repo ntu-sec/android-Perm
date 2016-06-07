@@ -24,6 +24,7 @@ public class MainActivity extends SampleActivityBase {
 
     private static final String TAG = "MainActivity";
     public static final String STORAGE_INTENT = "sg.edu.ntu.testperm.storageclient";
+    private MyContentProxy contentProxy;
     View mLayout;
 
     public void requestPerm(final String perm, final int requestCode) {
@@ -53,7 +54,7 @@ public class MainActivity extends SampleActivityBase {
     private void dumpDeviceInfoImpl() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String id = telephonyManager.getDeviceId();
-        Utils.alertInfo("deviceInfo", id, this);
+        contentProxy.alertInfo("deviceInfo", id);
     }
 
     @Override
@@ -77,6 +78,7 @@ public class MainActivity extends SampleActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.simpleLayout);
+        contentProxy = new MyContentProxy(this);
     }
 
     @Override
@@ -101,6 +103,6 @@ public class MainActivity extends SampleActivityBase {
     }
 
     public void dumpUserDict(View view) {
-        Utils.dumpUserDict(this);
+        contentProxy.dumpUserDict();
     }
 }
