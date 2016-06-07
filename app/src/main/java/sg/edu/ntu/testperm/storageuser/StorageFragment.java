@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package sg.edu.ntu.testperm.storageclient;
+package sg.edu.ntu.testperm.storageuser;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -41,13 +41,11 @@ import java.io.IOException;
 
 import sg.edu.ntu.testperm.R;
 
-public class StorageClientFragment extends Fragment {
-
-    // A request code's purpose is to match the result of a "startActivityForResult" with
-    // the type of the original request.  Choose any value.
+public class StorageFragment extends Fragment {
+    
     private static final int READ_REQUEST_CODE = 1337;
 
-    public static final String TAG = "StorageClientFragment";
+    public static final String TAG = StorageFragment.class.getSimpleName();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -142,7 +140,8 @@ public class StorageClientFragment extends Fragment {
             mUri = getArguments().getParcelable("URI");
         }
 
-        /** Create a Bitmap from the URI for that image and return it.
+        /**
+         * Create a Bitmap from the URI for that image and return it.
          *
          * @param uri the Uri for the image to return.
          */

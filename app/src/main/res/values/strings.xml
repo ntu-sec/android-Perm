@@ -6,4 +6,8 @@
     <string name="intros">intros</string>
     <string name="sample_action">sample action</string>
     <string name="useDict">dict list</string>
+    <string name="simple_name">simple name</string>
+    <string name="simple_add_name">simple add name</string>
+    <string name="menu_simple_settings">Settings</string>
+    <string name="simpleProvider">simple provider</string>
 </resources>

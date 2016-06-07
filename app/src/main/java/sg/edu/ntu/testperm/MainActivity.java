@@ -18,13 +18,16 @@ import com.example.android.common.logger.Log;
 
 import java.util.Locale;
 
-import sg.edu.ntu.testperm.storageclient.StorageActivity;
+import sg.edu.ntu.testperm.simpleprovider.SimpleActivity;
+import sg.edu.ntu.testperm.storageuser.StorageActivity;
 
 public class MainActivity extends SampleActivityBase {
 
-    private static final String TAG = "MainActivity";
-    public static final String STORAGE_INTENT = "sg.edu.ntu.testperm.storageclient";
+    private static final String TAG = MainActivity.class.getSimpleName();
+    public static final String STORAGE_INTENT = SimpleActivity.class.getPackage().getName();
+    public static final String SIMPLE_INTENT = StorageActivity.class.getPackage().getName();
     private MyContentProxy contentProxy;
+
     View mLayout;
 
     public void requestPerm(final String perm, final int requestCode) {
@@ -79,6 +82,7 @@ public class MainActivity extends SampleActivityBase {
         setContentView(R.layout.activity_main);
         mLayout = findViewById(R.id.simpleLayout);
         contentProxy = new MyContentProxy(this);
+
     }
 
     @Override
@@ -96,7 +100,7 @@ public class MainActivity extends SampleActivityBase {
         return super.onOptionsItemSelected(item);
     }
 
-    public void intentStorage(View view) {
+    public void intentStorageUser(View view) {
         Intent intent = new Intent(this, StorageActivity.class);
         intent.setAction(STORAGE_INTENT);
         startActivity(intent);
@@ -104,5 +108,11 @@ public class MainActivity extends SampleActivityBase {
 
     public void dumpUserDict(View view) {
         contentProxy.dumpUserDict();
+    }
+
+    public void intentSimpleProvider(View view) {
+        Intent intent = new Intent(this, SimpleActivity.class);
+        intent.setAction(SIMPLE_INTENT);
+        startActivity(intent);
     }
 }

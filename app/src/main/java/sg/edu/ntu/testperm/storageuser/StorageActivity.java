@@ -15,7 +15,7 @@
 */
 
 
-package sg.edu.ntu.testperm.storageclient;
+package sg.edu.ntu.testperm.storageuser;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -40,16 +40,16 @@ public class StorageActivity extends SampleActivityBase {
 
     public static final String TAG = "StorageActivity";
 
-    public static final String FRAGTAG = "StorageClientFragment";
+    public static final String FRAGTAG = "StorageFragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage);
+        setContentView(R.layout.activity_storage_user);
 
         if (getSupportFragmentManager().findFragmentByTag(FRAGTAG) == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            StorageClientFragment fragment = new StorageClientFragment();
+            StorageFragment fragment = new StorageFragment();
             transaction.add(fragment, FRAGTAG);
             transaction.commit();
         }
@@ -57,7 +57,7 @@ public class StorageActivity extends SampleActivityBase {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_storage, menu);
+        getMenuInflater().inflate(R.menu.menu_storage_user, menu);
         return true;
     }
 
