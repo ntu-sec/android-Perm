@@ -2,24 +2,28 @@ package sg.edu.ntu.testperm;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import com.example.android.common.activities.SampleActivityBase;
+import com.example.android.common.logger.Log;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+import sg.edu.ntu.testperm.storageclient.StorageActivity;
+
+public class MainActivity extends SampleActivityBase {
 
     private static final String TAG = "MainActivity";
+    public static final String STORAGE_INTENT = "sg.edu.ntu.testperm.storageclient";
     View mLayout;
 
     public void requestPerm(final String perm, final int requestCode) {
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public void dumpDeviceInfo(View view) {
         String perm = Manifest.permission.READ_PHONE_STATE;
         if (ContextCompat.checkSelfPermission(getBaseContext(), perm) != PackageManager.PERMISSION_GRANTED) {
+            Log.i(TAG, "request " + perm);
             requestPerm(perm, Config.PHONE_PERM);
         } else {
             Log.i(TAG, perm + " already granted");
@@ -48,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private void dumpDeviceInfoImpl() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String id = telephonyManager.getDeviceId();
-        Toast.makeText(this, id, Toast.LENGTH_LONG).show();
-        Log.i(TAG, id);
+        Utils.alertInfo("deviceInfo", id, this);
     }
 
     @Override
@@ -88,5 +92,15 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void intentStorage(View view) {
+        Intent intent = new Intent(this, StorageActivity.class);
+        intent.setAction(STORAGE_INTENT);
+        startActivity(intent);
+    }
+
+    public void dumpUserDict(View view) {
+        Utils.dumpUserDict(this);
     }
 }

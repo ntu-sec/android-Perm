@@ -1,10 +1,14 @@
 package sg.edu.ntu.testperm;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.UserDictionary;
-import android.util.Log;
+
+import com.example.android.common.logger.Log;
 
 public class Utils {
     public static final String TAG = Utils.class.getSimpleName();
@@ -27,6 +31,19 @@ public class Utils {
             }
             cursor.close();
         }
+    }
+
+    public static void alertInfo(String title, String msg, Context context) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(msg);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     public static boolean verifyPermissions(int[] grantResults) {

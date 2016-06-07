@@ -1,4 +1,4 @@
-package sg.edu.ntu.testperm;
+package sg.edu.ntu.testperm.template;
 
 import android.app.IntentService;
 import android.content.Intent;

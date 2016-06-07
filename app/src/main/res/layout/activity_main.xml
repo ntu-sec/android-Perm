@@ -9,4 +9,11 @@
 
     <include layout="@layout/content_main" />
 
+    <fragment
+        android:id="@+id/log_fragment"
+        android:name="com.example.android.common.logger.LogFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
 </LinearLayout>

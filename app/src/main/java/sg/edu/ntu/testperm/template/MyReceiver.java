@@ -1,4 +1,4 @@
-package sg.edu.ntu.testperm;
+package sg.edu.ntu.testperm.template;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
