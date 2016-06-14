@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="?attr/actionBarSize"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/phone"
@@ -40,24 +39,54 @@
         android:id="@+id/btn_start_storage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="intentStorageUser"
         android:layout_gravity="center_horizontal"
+        android:onClick="intentStorageUser"
         android:text="@string/storageUser" />
 
     <Button
         android:id="@+id/btn_runtime_perm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="runtimePermTest"
         android:layout_gravity="center_horizontal"
+        android:onClick="runtimePermTest"
         android:text="@string/runtime_perm" />
 
     <Button
         android:id="@+id/btn_person_provider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="intentPersonProvider"
         android:layout_gravity="center_horizontal"
+        android:onClick="intentPersonProvider"
         android:text="@string/person_provider" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_start_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="startSimpleService"
+            android:text="@string/start_service" />
+
+        <Button
+            android:id="@+id/btn_stop_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="stopSimpleService"
+            android:text="@string/stop_service" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_broadcastreceiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="sendBroadcast"
+        android:text="@string/send_broadcast" />
 
 </LinearLayout>

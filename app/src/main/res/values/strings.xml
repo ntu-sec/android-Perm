@@ -37,4 +37,8 @@
     <string name="birthday">Birthday</string>
     <string name="hint_birth">Type anything here</string>
     <string name="person_provider">person provider</string>
+    <string name="start_service">start service</string>
+    <string name="stop_service">stop service</string>
+    <string name="send_broadcast">start receiver</string>
+    <string name="MYCONTENT">sg.edu.ntu.testperm.MYCONTENT</string>
 </resources>

@@ -49,7 +49,7 @@
         <activity android:name=".provider.ListActivity" />
         <activity
             android:name=".provider.PersonActivity"
-            android:parentActivityName=".provider.ListActivity"/>
+            android:parentActivityName=".provider.ListActivity" />
 
         <provider
             android:name=".simpleprovider.SimpleProvider"
@@ -61,6 +61,15 @@
             android:authorities="sg.edu.ntu.testperm.provider"
             android:enabled="true"
             android:exported="false" />
+
+        <receiver android:name=".simplereceiver.SimpleReceiver">
+            <intent-filter>
+                <action android:name="sg.edu.ntu.testperm.MYCONTENT"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".simpleservice.SimpleService" />
+
 
     </application>
 

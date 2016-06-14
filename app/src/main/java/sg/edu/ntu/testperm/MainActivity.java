@@ -21,9 +21,9 @@ import com.example.android.common.logger.Log;
 import java.util.Locale;
 
 import sg.edu.ntu.testperm.provider.ListActivity;
-import sg.edu.ntu.testperm.provider.PersonActivity;
 import sg.edu.ntu.testperm.rtperm.RTPermActivity;
 import sg.edu.ntu.testperm.simpleprovider.SimpleActivity;
+import sg.edu.ntu.testperm.simpleservice.SimpleService;
 import sg.edu.ntu.testperm.storageuser.StorageActivity;
 
 public class MainActivity extends SampleActivityBase {
@@ -137,5 +137,21 @@ public class MainActivity extends SampleActivityBase {
         Intent intent = new Intent(this, ListActivity.class);
         intent.setAction("person provider");
         startActivity(intent);
+    }
+
+    public void startSimpleService(View view) {
+        Intent intent = new Intent(getBaseContext(), SimpleService.class);
+        startService(intent);
+    }
+
+    public void stopSimpleService(View view) {
+        Intent intent = new Intent(getBaseContext(), SimpleService.class);
+        stopService(intent);
+    }
+
+    public void sendBroadcast(View view) {
+        Intent intent = new Intent();
+        intent.setAction("sg.edu.ntu.testperm.MYCONTENT");
+        sendBroadcast(intent);
     }
 }
