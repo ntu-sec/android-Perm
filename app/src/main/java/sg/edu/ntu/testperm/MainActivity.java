@@ -9,15 +9,18 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.android.common.activities.SampleActivityBase;
 import com.example.android.common.logger.Log;
 
 import java.util.Locale;
 
+import sg.edu.ntu.testperm.rt.RTPermActivity;
 import sg.edu.ntu.testperm.simpleprovider.SimpleActivity;
 import sg.edu.ntu.testperm.storageuser.StorageActivity;
 
@@ -57,7 +60,13 @@ public class MainActivity extends SampleActivityBase {
     private void dumpDeviceInfoImpl() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String id = telephonyManager.getDeviceId();
-        contentProxy.alertInfo("deviceInfo", id);
+//        contentProxy.alertInfo("deviceInfo", id);
+        contentProxy.alertInfo("info", telephonyManager.getMmsUAProfUrl());
+        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Display.Mode[] modes = windowManager.getDefaultDisplay().getSupportedModes();
+        for (Display.Mode mode : modes) {
+            Log.i(TAG, mode.toString());
+        }
     }
 
     @Override
@@ -103,6 +112,12 @@ public class MainActivity extends SampleActivityBase {
     public void intentStorageUser(View view) {
         Intent intent = new Intent(this, StorageActivity.class);
         intent.setAction(STORAGE_INTENT);
+        startActivity(intent);
+    }
+
+    public void runtimePermTest(View view) {
+        Intent intent = new Intent(this, RTPermActivity.class);
+        intent.setAction("RTPerm");
         startActivity(intent);
     }
 

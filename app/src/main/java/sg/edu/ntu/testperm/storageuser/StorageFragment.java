@@ -183,7 +183,7 @@ public class StorageFragment extends Fragment {
             // Loading the image is going to require some sort of I/O, which must occur off the UI
             // thread.  Changing the ImageView to display the image must occur ON the UI thread.
             // The easiest way to divide up this labor is with an AsyncTask.  The doInBackground
-            // method will run in a separate thread, but onPostExecute will run in the main
+            // method will run in a separate thread, but onPostExecute will run in the menu_rtperm
             // UI thread.
             AsyncTask<Uri, Void, Bitmap> imageLoadAsyncTask = new AsyncTask<Uri, Void, Bitmap>() {
                 @Override
