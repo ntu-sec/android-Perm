@@ -29,4 +29,12 @@
     <string name="permission_camera_rationale">Camera perm needed.</string>
     <string name="permission_contacts_rationale">Contacts perm are needed.</string>
     <string name="runtime_perm">runtime perm</string>
+    <string name="settings_new">New</string>
+    <string name="firstname">FirstName</string>
+    <string name="hint_first_name">Your first name</string>
+    <string name="lastname">LastName</string>
+    <string name="hint_last_name">Your last name</string>
+    <string name="birthday">Birthday</string>
+    <string name="hint_birth">Type anything here</string>
+    <string name="person_provider">person provider</string>
 </resources>

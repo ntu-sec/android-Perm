@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package sg.edu.ntu.testperm.rt;
+package sg.edu.ntu.testperm.rtperm;
 
 import android.content.Context;
 import android.hardware.Camera;

@@ -3,8 +3,8 @@
     package="sg.edu.ntu.testperm">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_CONTACTS" />
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -44,14 +44,23 @@
             android:name="sg.edu.ntu.testperm.simpleprovider.SimpleActivity"
             android:permission="sg.edu.ntu.testperm.perm1" />
         <activity
-            android:name=".rt.RTPermActivity"
-            android:label="RTPermActivity"></activity>
+            android:name=".rtperm.RTPermActivity"
+            android:label="RTPermActivity" />
+        <activity android:name=".provider.ListActivity" />
+        <activity
+            android:name=".provider.PersonActivity"
+            android:parentActivityName=".provider.ListActivity"/>
 
         <provider
             android:name=".simpleprovider.SimpleProvider"
             android:authorities="sg.edu.ntu.testperm.simpleprovider.SimpleProvider"
             android:exported="true"
             android:multiprocess="true" />
+        <provider
+            android:name=".provider.database.PersonProvider"
+            android:authorities="sg.edu.ntu.testperm.provider"
+            android:enabled="true"
+            android:exported="false" />
 
     </application>
 

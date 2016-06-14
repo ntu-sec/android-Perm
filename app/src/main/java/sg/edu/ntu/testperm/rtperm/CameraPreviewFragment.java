@@ -1,4 +1,4 @@
-package sg.edu.ntu.testperm.rt;
+package sg.edu.ntu.testperm.rtperm;
 
 import android.hardware.Camera;
 import android.os.Bundle;

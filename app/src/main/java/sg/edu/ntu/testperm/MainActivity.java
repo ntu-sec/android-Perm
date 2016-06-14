@@ -20,7 +20,9 @@ import com.example.android.common.logger.Log;
 
 import java.util.Locale;
 
-import sg.edu.ntu.testperm.rt.RTPermActivity;
+import sg.edu.ntu.testperm.provider.ListActivity;
+import sg.edu.ntu.testperm.provider.PersonActivity;
+import sg.edu.ntu.testperm.rtperm.RTPermActivity;
 import sg.edu.ntu.testperm.simpleprovider.SimpleActivity;
 import sg.edu.ntu.testperm.storageuser.StorageActivity;
 
@@ -128,6 +130,12 @@ public class MainActivity extends SampleActivityBase {
     public void intentSimpleProvider(View view) {
         Intent intent = new Intent(this, SimpleActivity.class);
         intent.setAction(SIMPLE_INTENT);
+        startActivity(intent);
+    }
+
+    public void intentPersonProvider(View view) {
+        Intent intent = new Intent(this, ListActivity.class);
+        intent.setAction("person provider");
         startActivity(intent);
     }
 }
