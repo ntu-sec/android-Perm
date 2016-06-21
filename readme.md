@@ -18,3 +18,6 @@
     - granted
       - never show (impossible)
       -> revoked (have to re-grant)
+
+- deal with temporarily granted perm (content provider)
+- permission filter for intent

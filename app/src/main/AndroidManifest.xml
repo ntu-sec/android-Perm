@@ -46,7 +46,13 @@
         <activity
             android:name=".rtperm.RTPermActivity"
             android:label="RTPermActivity" />
-        <activity android:name=".provider.ListActivity" />
+        <activity android:name=".provider.ListActivity">
+            <intent-filter>
+                <action android:name="sg.edu.ntu.testperm.MYINTENT2" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".provider.PersonActivity"
             android:parentActivityName=".provider.ListActivity" />
@@ -62,7 +68,8 @@
             android:enabled="true"
             android:exported="false" />
 
-        <receiver android:name=".simplereceiver.SimpleReceiver"
+        <receiver
+            android:name=".simplereceiver.SimpleReceiver"
             android:permission="android.permission.READ_PHONE_STATE">
             <intent-filter>
                 <action android:name="sg.edu.ntu.testperm.MYINTENT" />
