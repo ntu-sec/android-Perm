@@ -62,9 +62,10 @@
             android:enabled="true"
             android:exported="false" />
 
-        <receiver android:name=".simplereceiver.SimpleReceiver">
+        <receiver android:name=".simplereceiver.SimpleReceiver"
+            android:permission="android.permission.READ_PHONE_STATE">
             <intent-filter>
-                <action android:name="sg.edu.ntu.testperm.MYCONTENT"/>
+                <action android:name="sg.edu.ntu.testperm.MYINTENT" />
             </intent-filter>
         </receiver>
 

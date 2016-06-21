@@ -9,11 +9,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.example.android.common.activities.SampleActivityBase;
 import com.example.android.common.logger.Log;
@@ -64,11 +62,11 @@ public class MainActivity extends SampleActivityBase {
         String id = telephonyManager.getDeviceId();
 //        contentProxy.alertInfo("deviceInfo", id);
         contentProxy.alertInfo("info", telephonyManager.getMmsUAProfUrl());
-        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        Display.Mode[] modes = windowManager.getDefaultDisplay().getSupportedModes();
-        for (Display.Mode mode : modes) {
-            Log.i(TAG, mode.toString());
-        }
+//        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+//        Display.Mode[] modes = windowManager.getDefaultDisplay().getSupportedModes();
+//        for (Display.Mode mode : modes) {
+//            Log.i(TAG, mode.toString());
+//        }
     }
 
     @Override
@@ -151,7 +149,7 @@ public class MainActivity extends SampleActivityBase {
 
     public void sendBroadcast(View view) {
         Intent intent = new Intent();
-        intent.setAction("sg.edu.ntu.testperm.MYCONTENT");
+        intent.setAction("sg.edu.ntu.testperm.MYINTENT");
         sendBroadcast(intent);
     }
 }
