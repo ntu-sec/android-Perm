@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 // This does not break the build when Android Studio is missing the JRebel for Android plugin.
-apply plugin: 'com.zeroturnaround.jrebel.android'
 
 android {
     compileSdkVersion 23
@@ -18,6 +17,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+afterEvaluate {
+    println "===afterEvaluate"
+    tasks.matching {
+        it.name.startsWith('dex')
+    }.each { dx ->
+        println "===dex task found: " + dx.name
+        if (dx.additionalParameters == null) {
+            dx.additionalParameters = []
+        }
+        dx.additionalParameters += '--no-optimize'
     }
 }
 

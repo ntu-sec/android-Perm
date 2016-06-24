@@ -50,7 +50,7 @@ public class ListActivity extends FragmentActivity implements
     public void dumpDeviceInfo(Context context) {
         String info;
         String perm = Manifest.permission.READ_PHONE_STATE;
-        Log.i(TAG, "callingpid="+ Binder.getCallingPid()+" mypid="+ Process.myPid());
+        Log.i(TAG, "callingpid=" + Binder.getCallingPid() + " mypid=" + Process.myPid());
         if (context.checkCallingPermission(perm) != PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG, "not granted " + perm);
             info = "activity denied perm " + perm;

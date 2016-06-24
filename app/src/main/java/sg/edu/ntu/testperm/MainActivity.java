@@ -57,11 +57,22 @@ public class MainActivity extends SampleActivityBase {
         }
     }
 
-    private void dumpDeviceInfoImpl() {
+    public void dumpDeviceInfoSimple(View view) {
+        String info;
+        String perm = Manifest.permission.READ_PHONE_STATE;
+        if (checkSelfPermission(perm) != PackageManager.PERMISSION_DENIED) {
+            info = dumpDeviceInfoImpl();
+        } else {
+            info = "deviceID N.A.";
+        }
+        Log.i(TAG, "DEVICE INFO: " + info);
+    }
+
+    private String dumpDeviceInfoImpl() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String id = telephonyManager.getDeviceId();
+        return telephonyManager.getDeviceId();
 //        contentProxy.alertInfo("deviceInfo", id);
-        contentProxy.alertInfo("info", telephonyManager.getMmsUAProfUrl());
+//        contentProxy.alertInfo("info", telephonyManager.getMmsUAProfUrl());
 //        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 //        Display.Mode[] modes = windowManager.getDefaultDisplay().getSupportedModes();
 //        for (Display.Mode mode : modes) {

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.Process;
-import android.support.v4.content.PermissionChecker;
 import android.telephony.TelephonyManager;
 
 import com.example.android.common.logger.Log;
@@ -32,7 +31,7 @@ public class SimpleReceiver extends BroadcastReceiver {
         String perm = Manifest.permission.READ_PHONE_STATE;
         Log.i(TAG, "callPid=" + Binder.getCallingPid() + " myPid=" + Process.myPid());
 //        if (PermissionChecker.checkCallingPermission(context, perm, "sg.edu.ntu.example.user") != PackageManager.PERMISSION_GRANTED) {
-            if (context.checkCallingOrSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) {
+        if (context.checkCallingOrSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG, "not granted " + perm);
             info = "denied perm " + perm;
         } else {
