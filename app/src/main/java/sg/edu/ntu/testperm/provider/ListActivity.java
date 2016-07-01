@@ -1,6 +1,7 @@
 package sg.edu.ntu.testperm.provider;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import sg.edu.ntu.testperm.BuildConfig;
+import sg.edu.ntu.testperm.MyContentProxy;
 import sg.edu.ntu.testperm.R;
 import sg.edu.ntu.testperm.provider.database.Person;
 
@@ -22,6 +24,8 @@ import sg.edu.ntu.testperm.provider.database.Person;
 
 public class ListActivity extends FragmentActivity implements
         ListFragment.Callbacks {
+
+    MyContentProxy contentProxy;
 
     @Override
     public void onItemSelected(long id) {
@@ -49,15 +53,23 @@ public class ListActivity extends FragmentActivity implements
 
     public void dumpDeviceInfo(Context context) {
         String info;
-        String perm = Manifest.permission.READ_PHONE_STATE;
         Log.i(TAG, "callingpid=" + Binder.getCallingPid() + " mypid=" + Process.myPid());
-        if (context.checkCallingPermission(perm) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "not granted " + perm);
-            info = "activity denied perm " + perm;
+        String perm = Manifest.permission.READ_PHONE_STATE;
+        ComponentName componentName = getCallingActivity();
+        String pkgName;
+        if (componentName == null) {
+            pkgName = context.getPackageName();
         } else {
-            Log.i(TAG, perm + " already granted");
-            info = dumpDeviceInfoImpl(context);
+            pkgName = componentName.getPackageName();
         }
+        Log.i(TAG, "pkgname=" + pkgName);
+        Log.i(TAG, "=====================");
+        if (contentProxy.hasPermission(perm, pkgName)) {
+            info = "granted " + perm + " result: " + dumpDeviceInfoImpl(context);
+        } else {
+            info = "denied " + perm + " from " + pkgName;
+        }
+        Log.i(TAG, info);
         Intent intent = new Intent();
         intent.putExtra("INFO", info);
         setResult(RESULT_OK, intent);
@@ -65,6 +77,7 @@ public class ListActivity extends FragmentActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        contentProxy = new MyContentProxy(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_list);
         Log.i(TAG, "onCreate:" + TAG);

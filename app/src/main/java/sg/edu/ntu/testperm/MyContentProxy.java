@@ -1,16 +1,39 @@
 package sg.edu.ntu.testperm;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.UserDictionary;
 
 import com.example.android.common.logger.Log;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MyContentProxy {
     private static final String TAG = MyContentProxy.class.getSimpleName();
     private ContextWrapper contextWrapper;
+
+    public boolean hasPermission(String permission, String packageName) {
+        try {
+            PackageInfo info = contextWrapper.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            if (info.requestedPermissions != null) {
+                for (String p : info.requestedPermissions) {
+                    if (p.equals(permission)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public MyContentProxy(ContextWrapper contextWrapper) {
         this.contextWrapper = contextWrapper;
@@ -59,6 +82,19 @@ public class MyContentProxy {
         Log.d(TAG, contextWrapper.getPackageCodePath());
         Log.d(TAG, String.format("%s %s", contextWrapper, contextWrapper.getApplicationInfo()));
         Log.d(TAG, String.format("%s %s", contextWrapper.getApplicationContext(), contextWrapper.getApplicationContext().getApplicationInfo()));
+    }
+
+    public int getPidFromPackageName(String pkgname) {
+        ActivityManager manager = (ActivityManager) contextWrapper.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> services = manager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo service : services) {
+            Log.i(TAG, String.valueOf(service.pid));
+            if (Arrays.asList(service.pkgList).contains(pkgname)) {
+                Log.i(TAG, "XXX: " + pkgname);
+                return service.pid;
+            }
+        }
+        return 0;
     }
 
 }

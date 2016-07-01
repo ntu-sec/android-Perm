@@ -16,7 +16,18 @@ public class SimpleReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        dumpDeviceInfo(context);
+        String info;
+        String perm = Manifest.permission.READ_PHONE_STATE;
+        Log.i(TAG, "callPid=" + Binder.getCallingPid() + " myPid=" + Process.myPid());
+//        if (PermissionChecker.checkCallingPermission(context, perm, "sg.edu.ntu.example.user") != PackageManager.PERMISSION_GRANTED) {
+        if (context.checkCallingOrSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) {
+            Log.i(TAG, "not granted " + perm);
+            info = "denied perm " + perm;
+        } else {
+            Log.i(TAG, perm + " already granted");
+            info = dumpDeviceInfoImpl(context);
+        }
+        sendBack(context, info);
     }
 
     private void sendBack(Context context, String info) {

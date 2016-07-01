@@ -1,5 +1,7 @@
 package sg.edu.ntu.testperm;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
 
 public class Utils {
