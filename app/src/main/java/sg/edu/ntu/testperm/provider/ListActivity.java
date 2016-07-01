@@ -1,10 +1,8 @@
 package sg.edu.ntu.testperm.provider;
 
 import android.Manifest;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Process;
@@ -18,6 +16,7 @@ import android.view.MenuItem;
 import sg.edu.ntu.testperm.BuildConfig;
 import sg.edu.ntu.testperm.MyContentProxy;
 import sg.edu.ntu.testperm.R;
+import sg.edu.ntu.testperm.Utils;
 import sg.edu.ntu.testperm.provider.database.Person;
 
 // https://github.com/spacecowboy/AndroidTutorialContentProvider
@@ -55,19 +54,10 @@ public class ListActivity extends FragmentActivity implements
         String info;
         Log.i(TAG, "callingpid=" + Binder.getCallingPid() + " mypid=" + Process.myPid());
         String perm = Manifest.permission.READ_PHONE_STATE;
-        ComponentName componentName = getCallingActivity();
-        String pkgName;
-        if (componentName == null) {
-            pkgName = context.getPackageName();
-        } else {
-            pkgName = componentName.getPackageName();
-        }
-        Log.i(TAG, "pkgname=" + pkgName);
-        Log.i(TAG, "=====================");
-        if (contentProxy.hasPermission(perm, pkgName)) {
+        if (Utils.hasPermForActivity(this, perm)) {
             info = "granted " + perm + " result: " + dumpDeviceInfoImpl(context);
         } else {
-            info = "denied " + perm + " from " + pkgName;
+            info = "denied " + perm;
         }
         Log.i(TAG, info);
         Intent intent = new Intent();

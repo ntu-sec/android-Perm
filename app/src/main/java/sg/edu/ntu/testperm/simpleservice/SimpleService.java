@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.Process;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import com.example.android.common.logger.Log;
 
 import sg.edu.ntu.testperm.MyContentProxy;
+import sg.edu.ntu.testperm.Utils;
 
 public class SimpleService extends Service {
 
@@ -35,32 +35,23 @@ public class SimpleService extends Service {
         return id;
     }
 
-    public void dumpDeviceInfo(Context context) {
+    public void dumpDeviceInfo(Context context, Intent intent) {
         String info;
         String perm = Manifest.permission.READ_PHONE_STATE;
         Log.i(TAG, "callPid=" + Binder.getCallingPid() + " myPid=" + Process.myPid());
-//        if (PermissionChecker.checkCallingPermission(context, perm, "sg.edu.ntu.example.user") != PackageManager.PERMISSION_GRANTED) {
-        if (context.checkCallingPermission(perm) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "not granted " + perm);
-            info = "denied perm " + perm;
-        } else {
+        if (Utils.hasPermission(this, perm, intent)) {
             Log.i(TAG, perm + " already granted");
             info = dumpDeviceInfoImpl(context);
+        } else {
+            Log.i(TAG, "not granted " + perm);
+            info = "denied perm " + perm;
         }
-        Log.i(TAG, info);
+        Log.i(TAG, "info=" + info);
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        int uid = Binder.getCallingUid();
-
-        final PackageManager pm = getPackageManager();
-        String name = pm.getNameForUid(uid);
-
-        Log.e("ITestService", "onBind: calling name: " + name);
-
-        //name is your own package, not the caller
 
         return null;
     }
@@ -73,7 +64,7 @@ public class SimpleService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-        dumpDeviceInfo(this);
+        dumpDeviceInfo(this, intent);
         return START_STICKY;
     }
 

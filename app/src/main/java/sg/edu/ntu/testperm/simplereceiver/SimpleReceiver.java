@@ -11,6 +11,8 @@ import android.telephony.TelephonyManager;
 
 import com.example.android.common.logger.Log;
 
+import sg.edu.ntu.testperm.Utils;
+
 public class SimpleReceiver extends BroadcastReceiver {
     public static final String TAG = SimpleReceiver.class.getSimpleName();
 
@@ -19,13 +21,12 @@ public class SimpleReceiver extends BroadcastReceiver {
         String info;
         String perm = Manifest.permission.READ_PHONE_STATE;
         Log.i(TAG, "callPid=" + Binder.getCallingPid() + " myPid=" + Process.myPid());
-//        if (PermissionChecker.checkCallingPermission(context, perm, "sg.edu.ntu.example.user") != PackageManager.PERMISSION_GRANTED) {
-        if (context.checkCallingOrSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "not granted " + perm);
-            info = "denied perm " + perm;
-        } else {
+        if (Utils.hasPermission(context, perm, intent)) {
             Log.i(TAG, perm + " already granted");
             info = dumpDeviceInfoImpl(context);
+        } else {
+            Log.i(TAG, "not granted " + perm);
+            info = "denied perm " + perm;
         }
         sendBack(context, info);
     }

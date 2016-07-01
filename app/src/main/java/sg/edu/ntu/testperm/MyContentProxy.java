@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -18,22 +19,6 @@ import java.util.List;
 public class MyContentProxy {
     private static final String TAG = MyContentProxy.class.getSimpleName();
     private ContextWrapper contextWrapper;
-
-    public boolean hasPermission(String permission, String packageName) {
-        try {
-            PackageInfo info = contextWrapper.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
-            if (info.requestedPermissions != null) {
-                for (String p : info.requestedPermissions) {
-                    if (p.equals(permission)) {
-                        return true;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     public MyContentProxy(ContextWrapper contextWrapper) {
         this.contextWrapper = contextWrapper;

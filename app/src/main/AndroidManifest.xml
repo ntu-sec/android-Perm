@@ -77,8 +77,7 @@
         </receiver>
 
         <service
-            android:name=".simpleservice.SimpleService"
-            android:process=":haha">
+            android:name=".simpleservice.SimpleService">
             <intent-filter>
                 <action android:name="sg.edu.ntu.testperm.MYINTENT3" />
                 <category android:name="android.intent.category.DEFAULT" />
