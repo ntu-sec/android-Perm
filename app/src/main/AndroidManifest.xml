@@ -42,11 +42,15 @@
             android:uiOptions="splitActionBarWhenNarrow" />
         <activity
             android:name="sg.edu.ntu.testperm.simpleprovider.SimpleActivity"
-            android:permission="sg.edu.ntu.testperm.perm1" />
+            android:permission="sg.edu.ntu.testperm.perm1"
+            android:exported="true"
+            />
         <activity
             android:name=".rtperm.RTPermActivity"
             android:label="RTPermActivity" />
-        <activity android:name=".provider.ListActivity">
+        <activity android:name=".provider.ListActivity"
+            android:permission="sg.edu.ntu.testperm.perm1"
+            android:exported="true">
             <intent-filter>
                 <action android:name="sg.edu.ntu.testperm.MYINTENT2" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -66,7 +70,10 @@
             android:name=".provider.database.PersonProvider"
             android:authorities="sg.edu.ntu.testperm.provider"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:readPermission="sg.edu.ntu.testperm.provider.READ_DATA"
+            android:writePermission="sg.edu.ntu.testperm.provider.WRITE_DATA" />
 
         <receiver
             android:name=".simplereceiver.SimpleReceiver"
@@ -76,8 +83,7 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".simpleservice.SimpleService">
+        <service android:name=".simpleservice.SimpleService">
             <intent-filter>
                 <action android:name="sg.edu.ntu.testperm.MYINTENT3" />
                 <category android:name="android.intent.category.DEFAULT" />

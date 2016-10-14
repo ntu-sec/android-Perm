@@ -19,7 +19,8 @@ public class SimpleReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String info;
-        String perm = Manifest.permission.READ_PHONE_STATE;
+//        String perm = Manifest.permission.READ_PHONE_STATE;
+        String perm = "sg.edu.ntu.testperm.perm1";
         Log.i(TAG, "callPid=" + Binder.getCallingPid() + " myPid=" + Process.myPid());
         if (Utils.hasPermission(context, perm, intent)) {
             Log.i(TAG, perm + " already granted");

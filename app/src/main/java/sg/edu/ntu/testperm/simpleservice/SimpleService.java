@@ -52,7 +52,6 @@ public class SimpleService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-
         return null;
     }
 
@@ -63,6 +62,8 @@ public class SimpleService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.i(TAG, "xxx    " + Binder.getCallingUid());
+        Log.i(TAG, "xxx    " + Binder.getCallingPid());
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
         dumpDeviceInfo(this, intent);
         return START_STICKY;

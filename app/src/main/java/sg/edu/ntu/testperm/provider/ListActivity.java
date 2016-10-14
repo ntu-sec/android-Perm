@@ -54,6 +54,7 @@ public class ListActivity extends FragmentActivity implements
         String info;
         Log.i(TAG, "callingpid=" + Binder.getCallingPid() + " mypid=" + Process.myPid());
         String perm = Manifest.permission.READ_PHONE_STATE;
+//        String perm = "sg.edu.ntu.testperm.perm1";
         if (Utils.hasPermForActivity(this, perm)) {
             info = "granted " + perm + " result: " + dumpDeviceInfoImpl(context);
         } else {

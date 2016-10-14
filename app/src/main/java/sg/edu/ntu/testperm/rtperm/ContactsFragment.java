@@ -126,7 +126,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
 
     private void insertDummyContact() {
         // Two operations are needed to insert a new contact.
-        ArrayList<ContentProviderOperation> operations = new ArrayList<>(2);
+        ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(2);
 
         // First, set up a new raw contact.
         ContentProviderOperation.Builder op =
@@ -148,7 +148,9 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
         ContentResolver resolver = getActivity().getContentResolver();
         try {
             resolver.applyBatch(ContactsContract.AUTHORITY, operations);
-        } catch (RemoteException | OperationApplicationException e) {
+        } catch (RemoteException e) {
+            Log.d(TAG, "Could not add a new contact: " + e.getMessage());
+        } catch (OperationApplicationException e) {
             Log.d(TAG, "Could not add a new contact: " + e.getMessage());
         }
     }
